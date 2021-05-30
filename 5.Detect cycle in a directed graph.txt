@@ -1,0 +1,68 @@
+DFS BASED SOLN
+----------------
+void DFSrec(vector<int>adj[],int s,bool visited[],bool restack[])
+{
+visited[s] = true;
+restack[s] = true;
+for(int i:adj[s])
+{
+if(visited[i]==false&&DFSrec(adj,i,visited,restack))
+return true;
+else if(restack[i]==true)
+return true;
+}
+restack[s] = false;
+return false;
+}
+
+
+void DFS(vector<int>adj[],int v)
+{
+bool visited[v],restack[v];
+memset(visited,-1,sizeof(visited));
+memset(restack,-1,sizeof(restack));
+for(int i=0;i<v;i++)
+{
+if(visited[i]==false)
+{
+if(DFSrec(adj,i,visited,restack)==true)
+return true;
+}
+}
+return false;
+}
+
+BFS BASED KAHNS BASED ALGORITHM
+--------------------------------
+bool bfs(vector<int>adj[],int v)
+{
+vector<int>indegree(v);
+memset(indegree,0,sizeof(indegree));
+for(int i=0;i<v;i++)
+{
+for(auto u:adj[i])
+{
+indegree[u]++;
+}
+}
+int count=0;
+queue<int>q;
+for(inti=0i<v;i++)
+{
+if(indegree[i]==0)
+q.push(i);
+}
+while(!q.empty())
+{
+int u = q.front();
+q.pop();
+for(auto i:adj[u])
+{
+indegree[i]--;
+if(indegree[i]==0)
+q.push(i);
+}
+count++;
+}
+return count==v;
+}

@@ -1,0 +1,28 @@
+void shortest(vector<int>adj[],int v,int s)
+{
+int dist[v];
+memset(dist,INT_MAX,sizeof(dist));
+dist[s] = 0;
+bool visited[v];
+memset(visited,false,sizeof(visited));
+queue<int>q;
+q.push(s);
+visited[s] = true;
+while(q.empty()==false)
+{
+int u = q.pop();
+for(int i:adj[u])
+{
+if(visited[i]==false)
+{
+dist[i] = dist[u]+1;
+visited[i] = true;
+q.push(i);
+}
+}
+}
+for(auto i:dist)
+{
+cout<<i<<" ";
+}
+}

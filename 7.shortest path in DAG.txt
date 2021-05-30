@@ -1,0 +1,49 @@
+
+vector<int> topologival(vector<int>adj[],int v)
+{
+vector<int>res;
+vector<int>indegree(v);
+memset(indegree,0,sizeof(indegree));
+for(int i=0;i<v;i++)
+{
+for(auto u:adj[i])
+{
+indegree[u]++;
+}
+}
+queue<int>q;
+for(inti=0i<v;i++)
+{
+if(indegree[i]==0)
+q.push(i);
+}
+while(!q.empty())
+{
+int u = q.front();
+q.pop();
+q.push_back(u);
+for(auto i:adj[u])
+{
+indegree[i]--;
+if(indegree[i]==0)
+q.push(i);
+}
+}
+return res;
+}
+void shortestpath(vector<int>adj[],int v,int s)
+{
+vector<int>ans = topological(adj,v);
+vector<int>dist(v);
+memset(dist,INT_MAX,sizeof(dist));
+dist[s] = 0;
+for(int i=0;i<v;i++)
+{
+int u = ans[i];
+for(auto k:adj[u])
+{
+if(dist[k]>dist[u]+weight(k,u))
+dist[k] = dist[u]+weight(k,u);
+}
+}
+}

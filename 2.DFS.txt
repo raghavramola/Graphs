@@ -1,0 +1,39 @@
+void DFSrec(vector<int>adj[],int s,bool vivited[])
+{
+visited[s] = true;
+cout<<s<<" ";
+for(int u:adj[s])
+{
+if(visited[u]==false)
+DFSrec(adj,u,visited);
+}
+}
+void DFS(vector<int>adj[],int v,int s)
+{
+bool visited[v];
+memset(visited,false,sizeof(visited));
+DFSrec(adj,s,visited);
+}
+
+DISCONNECTED GRAPH
+---------------------
+void DFSrec(vector<int>adj[],int s,bool visited[])
+{
+visited[s] = true;
+cout<<s<<" ";
+for(int u:adj[s])
+{
+if(visited[u]==false)
+DFSrec(adj,u,visited);
+}
+}
+void DFS(vector<int>adj[],int v)
+{
+bool visited[v];
+memset(visited,false,sizeof(visited));
+for(int i=0;i<v;i++)
+{
+if(visited[i]==false)
+DFSrec(adj,i,visited);
+}
+}

@@ -1,0 +1,57 @@
+WHEN SOURCE IS GIVEN
+---------------------
+void BFS(vector<int>adj[],int v,int s)
+{
+bool visited[v+1];
+memset(visited,false,sizeof(visited));
+queue<int>q;
+visited[s] = true;
+q.push(s);
+while(q.empty()==false)
+{
+int u = q.front();
+q.pop();
+cout<<u<<" ";
+for(int i:adj[u])
+{
+if(visited[i]==false)
+{
+visited[i] = true;
+q.push(i);
+}
+}
+}
+}
+WHEN SOURCE IS NOT GIVEN
+--------------------------
+void BFS(vector<int>adj[],int s,bool visited[])
+{
+queue<int>q;
+visited[s] = true;
+q.push(s);
+while(q.empty()==false)
+{
+int u = q.front();
+q.pop();
+cout<<u<<" ";
+for(int i:adj[u])
+{
+if(visited[i]==false)
+{
+visited[i] = true;
+q.push(i);
+}
+}
+}
+}
+
+void BFSprint(vector<int>adj[],int v)
+{
+bool visited[v+1];
+memset(visited,false,sizeof(visited));
+for(int i=0;i<v;i++)
+{
+if(visited[i]==false)
+BFS(adj,i,visited);
+}
+}
